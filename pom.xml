@@ -27,19 +27,16 @@
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-release-plugin</artifactId>
-<!--            <version>3.0.4</version>-->
-            <version>3.0.1</version>
-
-            <!--                    <configuration>-->
-            <!--                        <goal>install</goal>-->
-            <!--                        <autoVersionSubmodules>true</autoVersionSubmodules>-->
-            <!--                    </configuration>-->
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.apache.maven.plugins</groupId>-->
+<!--            <artifactId>maven-release-plugin</artifactId>
+<!-              <version>3.0.1</version>-->
+<!--                                <configuration>-->
+<!--                                    <goal>install</goal>-->
+<!--                                    <autoVersionSubmodules>true</autoVersionSubmodules>-->
+<!--                                </configuration>-->
+<!--        </dependency>-->
     </dependencies>
-
 
     <scm>
         <developerConnection>scm:git:https://github.com/NovaPrime1/sfg-pet-clinic.git</developerConnection>
@@ -60,16 +57,15 @@
     <!--                    </excludes>-->
     <!--                </configuration>-->
                 </plugin>
-
-<!--                <plugin>-->
-<!--                    <groupId>org.apache.maven.plugins</groupId>-->
-<!--                    <artifactId>maven-release-plugin</artifactId>-->
-<!--                    <version>3.0.1</version>-->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-release-plugin</artifactId>
+                    <version>3.0.1</version>
 <!--                    <configuration>-->
 <!--                        <goal>install</goal>-->
 <!--                        <autoVersionSubmodules>true</autoVersionSubmodules>-->
 <!--                    </configuration>-->
-<!--                </plugin>-->
+                </plugin>
             </plugins>
         </pluginManagement>
     </build>
