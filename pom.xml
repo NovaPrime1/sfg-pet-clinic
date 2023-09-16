@@ -26,6 +26,25 @@
         <java.version>17</java.version>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-release-plugin</artifactId>
+<!--            <version>3.0.4</version>-->
+            <version>3.0.1</version>
+
+            <!--                    <configuration>-->
+            <!--                        <goal>install</goal>-->
+            <!--                        <autoVersionSubmodules>true</autoVersionSubmodules>-->
+            <!--                    </configuration>-->
+        </dependency>
+    </dependencies>
+
+
+    <scm>
+        <developerConnection>scm:git:https://github.com/NovaPrime1/sfg-pet-clinic.git</developerConnection>
+    </scm>
+
     <build>
         <pluginManagement>
             <plugins>
@@ -41,21 +60,20 @@
     <!--                    </excludes>-->
     <!--                </configuration>-->
                 </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-release-plugin</artifactId>
-                    <version>2.5.3</version>
-                    <configuration>
-                        <goal>install</goal>
-                        <autoVersionSubmodules>true</autoVersionSubmodules>
-                    </configuration>
-                </plugin>
+
+<!--                <plugin>-->
+<!--                    <groupId>org.apache.maven.plugins</groupId>-->
+<!--                    <artifactId>maven-release-plugin</artifactId>-->
+<!--                    <version>3.0.1</version>-->
+<!--                    <configuration>-->
+<!--                        <goal>install</goal>-->
+<!--                        <autoVersionSubmodules>true</autoVersionSubmodules>-->
+<!--                    </configuration>-->
+<!--                </plugin>-->
             </plugins>
         </pluginManagement>
     </build>
 
-    <scm>
-        <developerConnection>scm:git:https://github.com/NovaPrime1/sfg-pet-clinic.git</developerConnection>
-    </scm>
+
 
 </project>
