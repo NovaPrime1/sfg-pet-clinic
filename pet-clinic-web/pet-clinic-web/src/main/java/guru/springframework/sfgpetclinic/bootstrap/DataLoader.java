@@ -4,12 +4,9 @@ import guru.springframework.sfgpetclinic.model.Owner;
 import guru.springframework.sfgpetclinic.model.Vet;
 import guru.springframework.sfgpetclinic.services.OwnerService;
 import guru.springframework.sfgpetclinic.services.VetService;
-import guru.springframework.sfgpetclinic.services.map.OwnerServiceMap;
-import guru.springframework.sfgpetclinic.services.map.VetServiceMap;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-
-import java.sql.SQLOutput;
 
 @Component
 // Standard way to implement with CommandlineRunner
@@ -18,10 +15,14 @@ public class DataLoader implements CommandLineRunner {
     private final OwnerService ownerService;
     private final VetService vetService;
 
-    public DataLoader() {
-        ownerService = new OwnerServiceMap();
-        vetService = new VetServiceMap();
+//    @Autowired post spring 4.2 this is not need when you have a constructor like this.
+    public DataLoader(OwnerService ownerService, VetService vetService) {
+        // Don't want a dependency on a hared implementation. I want spring to do that.
+        // ownerService = new OwnerServiceMap();
+        // vetService = new VetServiceMap();
 
+        this.ownerService = ownerService;
+        this.vetService = vetService;
     }
 
     @Override

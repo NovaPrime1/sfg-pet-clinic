@@ -2,9 +2,13 @@ package guru.springframework.sfgpetclinic.services.map;
 
 import guru.springframework.sfgpetclinic.model.Owner;
 import guru.springframework.sfgpetclinic.services.OwnerService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+
+// Service annotation is the same as component but the service is more an indication of the behavior
+@Service
 public class OwnerServiceMap extends AbstractMapService<Owner, Long > implements OwnerService {
 
     @Override
