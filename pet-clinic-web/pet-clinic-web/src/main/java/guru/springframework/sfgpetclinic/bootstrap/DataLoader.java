@@ -1,14 +1,11 @@
 package guru.springframework.sfgpetclinic.bootstrap;
 
-import guru.springframework.sfgpetclinic.model.Owner;
-import guru.springframework.sfgpetclinic.model.Pet;
-import guru.springframework.sfgpetclinic.model.PetType;
-import guru.springframework.sfgpetclinic.model.Vet;
+import guru.springframework.sfgpetclinic.model.*;
 import guru.springframework.sfgpetclinic.services.OwnerService;
 import guru.springframework.sfgpetclinic.services.PetTypeService;
+import guru.springframework.sfgpetclinic.services.SpecialityService;
 import guru.springframework.sfgpetclinic.services.VetService;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -20,10 +17,12 @@ public class DataLoader implements CommandLineRunner {
     private final OwnerService ownerService;
     private final VetService vetService;
     private final PetTypeService petTypeService;
+    private final SpecialityService specialityService;
 
 
 //    @Autowired post spring 4.2 this is not need when you have a constructor like this.
-    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService) {
+    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService,
+                      SpecialityService specialityService) {
         // Don't want a dependency on a hared implementation. I want spring to do that.
         // ownerService = new OwnerServiceMap();
         // vetService = new VetServiceMap();
@@ -31,11 +30,22 @@ public class DataLoader implements CommandLineRunner {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
+        this.specialityService = specialityService;
     }
 
     @Override
     public void run(String... args) throws Exception {
 
+        // This will allow us to use a db or not.
+        int count = petTypeService.findAll().size();
+
+        if (count == 0) {
+            loadData();
+        }
+
+    }
+
+    private void loadData() {
         PetType dog = new PetType();
         dog.setName("Dog");
         // When I get the savedDogType (save process is going to establish identity) I will be able to use it later on.
@@ -43,8 +53,21 @@ public class DataLoader implements CommandLineRunner {
         PetType savedDogPetType = petTypeService.save(dog);
 
         PetType cat = new PetType();
-        dog.setName("Cat");
+        cat.setName("Cat");
         PetType savedCatPetType = petTypeService.save(cat);
+
+        Speciality radiology = new Speciality();
+        radiology.setDescription("Radiology");
+        Speciality saveRadiology = specialityService.save(radiology);
+
+        Speciality surgery = new Speciality();
+        surgery.setDescription("Surgery");
+        Speciality saveSurgery = specialityService.save(surgery);
+
+        Speciality dentistry = new Speciality();
+        dentistry.setDescription("Dentistry");
+        Speciality saveDentistry = specialityService.save(dentistry);
+
 
         Owner owner1 = new Owner();
 //        owner1.setId(1L); // Manually setting the ID value.
@@ -83,23 +106,21 @@ public class DataLoader implements CommandLineRunner {
         System.out.println("Loaded Owners.....");
 
         Vet vet1 = new Vet();
-//        vet1.setId(1L);
+//      vet1.setId(1L);
         vet1.setFirstName("Sam");
         vet1.setLastName("Axe");
+        vet1.getSpecialities().add(saveRadiology);
 
         vetService.save(vet1);
 
         Vet vet2 = new Vet();
-//        vet2.setId(2L);
+//      vet2.setId(2L);
         vet2.setFirstName("Jessie");
         vet2.setLastName("Porter");
+        vet2.getSpecialities().add(saveSurgery);
 
         vetService.save(vet2);
 
         System.out.println(" Loaded Vets.....");
-
-
-
-
     }
 }
