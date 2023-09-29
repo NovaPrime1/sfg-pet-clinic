@@ -1,13 +1,17 @@
 package guru.springframework.sfgpetclinic.bootstrap;
 
 import guru.springframework.sfgpetclinic.model.Owner;
+import guru.springframework.sfgpetclinic.model.Pet;
 import guru.springframework.sfgpetclinic.model.PetType;
 import guru.springframework.sfgpetclinic.model.Vet;
 import guru.springframework.sfgpetclinic.services.OwnerService;
 import guru.springframework.sfgpetclinic.services.PetTypeService;
 import guru.springframework.sfgpetclinic.services.VetService;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDate;
 
 @Component
 // Standard way to implement with CommandlineRunner
@@ -46,13 +50,33 @@ public class DataLoader implements CommandLineRunner {
 //        owner1.setId(1L); // Manually setting the ID value.
         owner1.setFirstName("Michael");
         owner1.setLastName("Weston");
-
+        owner1.setAddress("123 Brickerel");
+        owner1.setCity("Miami");
+        owner1.setTelephone("1231231234");
         ownerService.save(owner1);
+
+        Pet mikesPet = new Pet();
+        mikesPet.setPetType(savedDogPetType);
+        mikesPet.setOwner(owner1);
+        mikesPet.setBirthDate(LocalDate.now());
+        mikesPet.setName("Rosco");
+        owner1.getPets().add(mikesPet);
+
 
         Owner owner2 = new Owner();
 //        owner2.setId(2L);
         owner2.setFirstName("Fionna");
         owner2.setLastName("Glenanne");
+        owner1.setAddress("123 Brickerel");
+        owner1.setCity("Miami");
+        owner1.setTelephone("1231231234");
+
+        Pet fionnaPet = new Pet();
+        fionnaPet.setName("Just Cat");
+        fionnaPet.setOwner(owner2);
+        fionnaPet.setBirthDate(LocalDate.now());
+        fionnaPet.setPetType(savedCatPetType);
+        owner2.getPets().add(fionnaPet);
 
         ownerService.save(owner2);
 
