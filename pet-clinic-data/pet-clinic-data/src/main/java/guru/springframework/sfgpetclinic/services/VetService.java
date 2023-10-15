@@ -7,4 +7,5 @@ import java.util.Set;
 
 public interface VetService extends CrudService<Vet, Long> {
 
+    void deleteById(Long aLong);
 }
