@@ -24,8 +24,8 @@ public class DataLoader implements CommandLineRunner {
     public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService,
                       SpecialityService specialityService) {
         // Don't want a dependency on a hared implementation. I want spring to do that.
-        // ownerService = new OwnerServiceMap();
-        // vetService = new VetServiceMap();
+        // ownerService = new OwnerMapService();
+        // vetService = new VetMapService();
 
         this.ownerService = ownerService;
         this.vetService = vetService;
