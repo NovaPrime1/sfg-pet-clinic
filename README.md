@@ -2,7 +2,7 @@
 
 # Spring Framework Guru Pet Clinic
 
-This repo is for my springframework projects  course called Pet Clinic 
+This repo is for my springframework project called Pet Clinic 
 
 Contained in this repo is an opinionated version of the classic reference application - [Spring Pet Clinic](https://github.com/spring-projects/spring-petclinic)
 
