@@ -25,7 +25,10 @@ jobs:
       # Then run your tests!
       - run:
           name: Test
-          command: mvn test
+          command: mvn
+      - store_test_results:
+          path: test-results
+
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
