@@ -18,4 +18,9 @@ public class PetType extends BaseEntity {
     @Column(name = "name")
     private String name;
 
+    // Change the return type at the model level so when it get the to view it is already of object type String
+    @Override
+    public String toString() {
+        return  name;
+    }
 }
