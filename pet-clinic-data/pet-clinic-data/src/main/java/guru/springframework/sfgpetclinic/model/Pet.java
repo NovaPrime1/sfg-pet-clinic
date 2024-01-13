@@ -12,10 +12,25 @@ import java.util.Set;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Entity
 @Table(name = "pets")
 public class Pet extends BaseEntity {
+
+    // Added this to fix the id call on the PetContoller Test.
+    @Builder
+    public Pet(Long id ) {
+        super(id);
+        this.name = name;
+    }
+
+    public Pet(Long id, String name, PetType petType, Owner owner, LocalDate birthDate, Set<Visit> visits) {
+        super(id);
+        this.name = name;
+        this.petType = petType;
+        this.owner = owner;
+        this.birthDate = birthDate;
+        this.visits = visits;
+    }
 
     @Column(name = "name")
     private String name;
