@@ -16,13 +16,15 @@ import java.util.Set;
 @Table(name = "pets")
 public class Pet extends BaseEntity {
 
-    // Added this to fix the id call on the PetContoller Test.
-    @Builder
-    public Pet(Long id ) {
-        super(id);
-        this.name = name;
-    }
+// Added this to fix the id call on the PetController Test. Don't know if you can do two builder but second one is for birthdate
+// for VisitController
+//    @Builder
+//    public Pet(Long id ) {
+//        super(id);
+//        this.name = name;
+//    }
 
+    @Builder
     public Pet(Long id, String name, PetType petType, Owner owner, LocalDate birthDate, Set<Visit> visits) {
         super(id);
         this.name = name;
